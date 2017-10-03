@@ -50,6 +50,12 @@
                 
                 $("section").append(article);
             });
+
+            if(response.continue){
+                $("<article>")
+                    .append("<button class='inner btn-more'>Больше записей</button>")
+                    .appendTo("section");
+            }
             
         })
         .fail(function(xhr, status, error){
