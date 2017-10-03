@@ -14,8 +14,11 @@
     <script>
     $(function(){
         $.ajax({
-            type: "POST",
-            url: "https://en.wikipedia.org/w/api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info&format=json"
+            url: "https://en.wikipedia.org/w/api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info&format=json",
+            data: queryData,
+            dataType: 'json',
+            type: 'POST',
+            headers: { 'Api-User-Agent': 'Example/1.0' }
         })
         .done(function(response){
             console.log(response);
