@@ -14,20 +14,12 @@
     <script>
     $(function(){
         $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info&format=json",
-            data: queryData,
-            dataType: 'json',
-            type: 'POST',
-            headers: { 'Api-User-Agent': 'Example/1.0' }
-        })
-        .done(function(response){
-            console.log(response);
-        })
-        .fail(function(xhr, status, error){
-            console.log(xhr, error);
-        })
-        .always(function(){
-            //...
+        url: '//en.wikipedia.org/w/api.php',
+        data: { action: 'query', list: 'search', srsearch: 'Richard Feynman', format: 'json' },
+        dataType: 'jsonp',
+        success: function (x) {
+            console.log('title', x.query.search[0].title);
+        }
         });
     });
     </script>
