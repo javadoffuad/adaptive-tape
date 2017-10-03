@@ -5,22 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/media-queries.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
 </head>
 <body>
-    <h2>JavaScript articles</h2>
-
+    <h1 class="title">JavaScript articles</h1>
+    <div class="all-records"></div>
+	
+	<main>
+        <section></section>
+    </main>
 
     <script>
     $(function(){
         $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info&format=json",
+            url: "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=javascript&srlimit=30&srprop=timestamp&sroffset=0&format=json",
             dataType: 'jsonp',
-            type: 'POST',
-            headers: { 'Api-User-Agent': 'Example/1.0' }
+            type: 'POST'
         })
         .done(function(response){
-            console.log(response);
+            if(!response.query.search.length){
+                $("<div>").addClass("empty-page")
+                    .text("No records")
+                    .appendTo("main");
+                return;
+            }
+            
+            $(".all-records").text("Количество статей: " + response.query.searchinfo.totalhits);
+
+            $.each(response.query.search, function(){
+                var article = $("<article>")
+                    .append("<div class='inner'>");
+            
+                $("<h2>").addClass("article__title")
+                    .text(this.title)
+                    .appendTo(article.find(".inner"));
+
+                $("<span>").addClass("article__date")
+                    .text(formattedDate(new Date(this.timestamp)))
+                    .appendTo(article.find(".inner"));
+                
+                $("section").append(article);
+            });
+            
         })
         .fail(function(xhr, status, error){
             console.log(xhr, error);

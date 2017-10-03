@@ -1,0 +1,17 @@
+@media screen and (max-width: 960px) {
+    article{
+        width: 33.3%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    article{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    article{
+        width: 100%;
+    }
+}
