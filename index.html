@@ -22,11 +22,13 @@
     <script>
     $(function(){
         $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=javascript&srlimit=30&srprop=timestamp&sroffset=0&format=json",
+            url: "http://dev-ivanovoobl.garpix.com/api/v1/news",
             dataType: 'jsonp',
-            type: 'POST'
+            type: 'GET'
         })
         .done(function(response){
+		console.log(response);
+		return false;
             if(!response.query.search.length){
                 $("<div>").addClass("empty-page")
                     .text("No records")
