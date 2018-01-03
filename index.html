@@ -22,8 +22,8 @@
     <script>
     $(function(){
         $.ajax({
-            url: "http://dev-ivanovoobl.garpix.com/api/v1/news",
-            dataType: 'jsonp',
+            url: "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=javascript&srlimit=30&srprop=timestamp&sroffset=0&format=json",
+	    dataType: 'jsonp',
             type: 'GET'
         })
         .done(function(response){
