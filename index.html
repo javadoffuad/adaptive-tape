@@ -28,7 +28,7 @@
         })
         .done(function(response){
 		console.log(response);
-		return false;
+		
             if(!response.query.search.length){
                 $("<div>").addClass("empty-page")
                     .text("No records")
