@@ -22,18 +22,6 @@
     <script>
     $(function(){
 	    
-	$.ajax({
-            url: "http://hypnotica.garpix.com/api/docs/auth/login",
-            type: 'POST',
-            data: 'username=admin&password=jeka2016'
-        })
-	.done(function(data){
-		console.log('success', data);
-	})
-	.fail(function(xhr, status, error){
-            console.log('login', xhr, error);
-        })  
-	    
         $.ajax({
             url: "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=javascript&srlimit=30&srprop=timestamp&sroffset=0&format=json",
 	    dataType: 'jsonp',
